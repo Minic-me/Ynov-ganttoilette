@@ -1,8 +1,31 @@
 'use strict';
 
+
+
 const express = require('express');
 const router = express.Router();
-const heroModel = require('../model/UserModel');
+const userModel = require('../Model/userModel');
+
+console.log("OK");
+
+/**
+ * 
+ * 
+ * 
+ **/
+
+router.get('/signup', (req, res) => {
+
+    console.log(req.query);
+    console.log("Add function called..");
+});
+
+router.get('/login', (req, res) => {
+
+    console.log(req.query);
+    console.log("Add function called..");
+});
+
 
 router.get("/:name", (req, res) => {
     userModel.findOne({
@@ -18,3 +41,5 @@ router.get("/:name", (req, res) => {
         }
     });
 });
+
+exports.router = router;
