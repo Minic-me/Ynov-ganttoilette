@@ -1,0 +1,49 @@
+<div class="signup"></div>
+<div class="container-fluid" ng-controller="signInCtrl">
+  <div class="row ">
+
+    <div class=" signup-form ">
+
+      <h1>Welcome !</h1>
+      <hr>
+
+      <form>
+
+        <div ng-show="NewUser">
+          <div class="form-group animate-show-hide ">
+
+            <input type="text " class="form-control " placeholder="Name" ng-model="sign.name">
+          </div>
+          <div class="form-group animate-show-hide ">
+
+            <input type="text " class="form-control " placeholder="First Name" ng-model="sign.firstName">
+          </div>
+        </div>
+        <div class="form-group  animate-show-hide">
+
+          <input type="email " class="form-control " placeholder="Email" ng-model="sign.email">
+        </div>
+        <div class="form-group  animate-show-hide">
+          <input type="password " class="form-control " placeholder="Password" ng-model="sign.password">
+        </div>
+        <div ng-show="NewUser">
+
+          <button type="submit" class=" btn btn-success"> Sign-Up</button> <a href="" ng-click="NewUser=false">Already Registered?</a>
+
+
+        </div>
+
+        <div ng-show="!NewUser">
+          <button class="btn btn-success " ng-click="SignIn()">Sign-In</button>
+          <a href="" ng-click="NewUser=true">First Comming ?</a>
+        </div>
+
+
+
+
+
+      </form>
+    </div>
+  </div>
+
+</div>
