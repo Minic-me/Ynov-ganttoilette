@@ -25,6 +25,16 @@ let UserSchema = new Schema({
         trim: true,
         unique: true
     },
+    projectOwned: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    projectShared: {
+        type: String,
+        required: true,
+        trim: true
+    },
 });
 
-module.exports = mongoose.model('Hero', UserSchema);
+module.exports = mongoose.model('User', UserSchema);
