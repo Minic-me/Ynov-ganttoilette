@@ -5,34 +5,33 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 let UserSchema = new Schema({
-    nom: {
+    firstname: {
         type: String,
         required: true,
         trim: true
     },
-    prenom: {
-        type: String,
-        required: true
-    },
-    mdp: {
+    name: {
         type: String,
         required: true,
         trim: true
     },
-    mail: {
+    password: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    email: {
         type: String,
         required: true,
         trim: true,
         unique: true
     },
     projectOwned: {
-        type: String,
-        required: true,
+        type: [String],
         trim: true
     },
     projectShared: {
-        type: String,
-        required: true,
+        type: [String],
         trim: true
     },
 });

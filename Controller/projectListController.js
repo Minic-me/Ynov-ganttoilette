@@ -12,7 +12,7 @@
 const express = require('express');
 const router = express.Router();
 
-console.log("OK");
+const projectModel = require('../Model/projectSchema');
 
 /**
  * Add a project
@@ -24,14 +24,12 @@ router.post('/createProject', (req, res, next) => {
     res.end();
 });
 
-
 /**
  * Delete a project
  */
 router.delete('/deleteProject/:id', (req, res, next) => {
     res.end();
 });
-
 
 /**
  * Get a project
@@ -42,11 +40,22 @@ router.get('/getProjects', (req, res, next) => {
 
 exports.router = router;
 
-
 /**
  * Delete a project
  * @param {String} id - id of the project to delete
  */
-let deleteProject = (id) => {
+let deleteProject = (req, res) => {
+    let id = req.params.id;
+    projectModel.findByIdAndRemove(id, (err) => {
+        if (err) {
+            res.status(400);
+            console.log(err);
+            res.end();
+        }
+        else {
+            res.status(204);
+            res.end();
+        }
+    });
 
 };

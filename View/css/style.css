@@ -1,5 +1,9 @@
 /* SIGN UP*/
 
+body {
+    font-family: 'Handlee', sans-serif !important;
+}
+
 .signup-form {
     background-color: rgba(255, 255, 255, 0.7);
     padding: 40px;
@@ -11,6 +15,22 @@
 
 .signup-form h1 {
     text-align: center;
+    color: #00aced;
+}
+
+.signup-form button {
+    background-color: #00aced;
+    border-color: #00aced;
+    font-family: 'Handlee', sans-serif !important;
+}
+
+.signup-form button:hover {
+    background-color: #f7970a;
+    border-color: #f7970a;
+}
+
+.signup-form hr {
+    background-color: lightblue;
 }
 
 .signup {
@@ -22,6 +42,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    filter: blur(2px);
 }
 
 .form-group {
@@ -39,7 +60,8 @@
 
 .signup-form input {
     border-radius: 0;
-    background-color: rgba(255, 255, 255, 0.9)
+    background-color: rgba(255, 255, 255, 0.9);
+    font-family: 'Handlee', sans-serif !important;
 }
 
 
