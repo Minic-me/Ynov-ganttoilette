@@ -24,7 +24,13 @@ let UserSchema = new Schema({
         type: String,
         required: true,
         trim: true,
-        unique: true
+        unique: true,
+        validate: {
+            validator: function(v) {
+                return /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(v);
+            },
+            message: '{VALUE} is not a valid email!'
+        },
     },
     projectOwned: {
         type: [String],

@@ -3,10 +3,11 @@ var app = angular.module("ganttApp", ["ngRoute"]);
 app.config(function($routeProvider) {
   $routeProvider
     .when("/", {
-      templateUrl: "connexion.html",
+      templateUrl: "/user",
       controller: "connexionCtrl"
 
     }).when("/Project", {
-      templateUrl: "projectList.html"
+      templateUrl: "/project",
+      controller: "projectCtrl"
     });
 });
