@@ -1,6 +1,6 @@
 app.controller('connexionCtrl', ['$scope', '$http', function($scope, $http) {
 
-    const serverName = "https://gantt-kagomuffex.c9users.io"
+    const serverName = ""
 
     $scope.Login = function() {
         var sign = $scope.sign;
@@ -12,8 +12,10 @@ app.controller('connexionCtrl', ['$scope', '$http', function($scope, $http) {
         $http.get(serverName + "/user/login", {
                 params: user
             })
-            .success(function(id) {
-                sessionStorage.setItem("id", id);
+            .then(function() {
+                location.replace('/#!/Project');
+            }, function(err) {
+
             });
     }
 
@@ -29,8 +31,12 @@ app.controller('connexionCtrl', ['$scope', '$http', function($scope, $http) {
         $http.get(serverName + "/user/register", {
                 params: user
             })
-            .success(function(id) {
-                sessionStorage.setItem("id", id);
+            .then(function() {
+                $scope.sign.email = user.email;
+                $scope.sign.password = user.password;
+                $scope.Login();
+            }, function(err) {
+
             });
     }
 

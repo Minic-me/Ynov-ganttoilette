@@ -12,6 +12,7 @@ const path = require('path');
 
 const mongoose = require('mongoose');
 
+const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 
@@ -29,6 +30,8 @@ let port = process.env.PORT || 3000;
 // Routing           /!\ Remplacer le dossier View par le nom du dossier qui contient votre client /!\
 app.use(express.static(path.join(__dirname, 'View')));
 
+app.use(cookieParser());
+
 // Création du serveur
 http.listen(port, () => {
     console.log('\nGANTTOILET listening at 127.0.0.1:', port);
@@ -41,8 +44,7 @@ app.use(session({
     secret: 'caca',
     rolling: true, // reset le maxAge a chaque requete
     cookie: {
-        secure: true,
-        httpOnly: true,
+        secure: false,
         path: '/',
         maxAge: new Date(Date.now() + 15 * 60 * 1000) // 15 min
     },
@@ -53,6 +55,7 @@ app.use(session({
 
 app.use('/', (req, res, next) => {
     //console.log(res.headersSent);  <-- ne marche pas pour un sendFile
+    console.log(req.session);
     if (req.path === '/') {
         res.sendFile(path.join(__dirname, 'View', 'index.html'));
     }
@@ -62,33 +65,37 @@ app.use('/', (req, res, next) => {
 });
 
 app.use('/user', (req, res, next) => {
-    if (!user.isUserConnected(req)) {
-        if (req.path === '/') {
-            res.sendFile(path.join(__dirname, 'View', 'connexion.html'));
+    user.isUserConnected(req, (connected) => {
+        if (!connected) {
+            if (req.path === '/') {
+                res.sendFile(path.join(__dirname, 'View', 'connexion.html'));
+            }
+            else {
+                next();
+            }
+
         }
         else {
-            next();
+            // aller sur la page des projets
         }
-
-    }
-    else {
-        res.send('<h1>Non connecté</h1>');
-    }
+    });
 });
 app.use('/user', user.router);
 
 app.use('/project', (req, res, next) => {
-    if (user.isUserConnected(req)) {
-        if (req.path === '/') {
-            res.sendFile(path.join(__dirname, 'View', 'projectList.html'));
+    user.isUserConnected(req, (connected) => {
+        if (connected) {
+            if (req.path === '/') {
+                res.sendFile(path.join(__dirname, 'View', 'projectList.html'));
+            }
+            else {
+                next();
+            }
         }
         else {
-            next();
+            res.send('<h1>Non connecté</h1>')
+            res.end();
         }
-    }
-    else {
-        res.send('<h1>Non connecté</h1>')
-        res.end();
-    }
+    })
 });
 app.use('/project', project.router);

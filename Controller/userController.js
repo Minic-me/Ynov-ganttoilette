@@ -8,17 +8,22 @@ const userSchema = require('../Model/userSchema');
 
 
 
-let isUserConnected = (req) => {
-    let connected = false;
+let isUserConnected = (req, callback) => {
+    callback = typeof callback === "function" ? callback : () => {};
     if (typeof req.session.user !== "undefined") {
-        userSchema.findById(req.session.user, (err, user) => {
+        userSchema.findById(req.session.user._id, (err, user) => {
             if (!err) {
                 req.session.user = user._doc;
-                connected = true;
+                callback(true);
+            }
+            else {
+                callback(false);
             }
         })
     }
-    return connected;
+    else {
+        callback(false);
+    }
 }
 exports.isUserConnected = isUserConnected;
 
@@ -36,11 +41,10 @@ router.get('/register', (req, res) => {
     userSchema.create(data, (err, user) => {
         if (err) {
             console.log(err);
-            res.status(500);
-            res.end();
+            res.sendStatus(500).end();
         }
         else {
-            res.json(user._doc);
+            res.sendStatus(204).end();
         }
     });
 });
@@ -60,24 +64,6 @@ router.get('/login', (req, res) => {
             req.session.user = user;
             res.sendStatus(204).end();
         }
-        res.sent = true;
-    });
-    // use req.session pour ajouter les donnés de l'utilisateur
-});
-
-router.get("/:name", (req, res) => {
-    userSchema.findOne({
-        name: req.params.name
-    }, (err, docs) => {
-        if (err) {
-            console.log(err);
-            res.status(500);
-            res.end();
-        }
-        else {
-            res.json(docs);
-        }
-        res.sent = true;
     });
 });
 

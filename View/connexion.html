@@ -7,7 +7,7 @@
       <h1>Welcome !</h1>
       <hr>
 
-      <form>
+      <form ng-submit="NewUser ? Register() : Login()">
 
         <div ng-show="NewUser">
           <div class="form-group animate-show-hide ">
@@ -28,12 +28,12 @@
         </div>
 
         <div ng-show="NewUser">
-          <button type="submit" class="btn btn-success" ng-click="Register()"> Sign - Up</button>
+          <button type="submit" class="btn btn-success"> Sign - Up</button>
           <a href="" ng-click="NewUser=false">Already Registered?</a>
         </div>
 
         <div ng-show="!NewUser">
-          <button class="btn btn-success " ng-click="Login()">Sign-In</button>
+          <button class="btn btn-success" type="submit">Sign-In</button>
           <a href="" ng-click="NewUser=true">First Comming ?</a>
         </div>
       </form>

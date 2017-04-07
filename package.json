@@ -9,6 +9,7 @@
     "angular": "^1.6.4",
     "async": "^2.3.0",
     "bootstrap": "^3.3.7",
+    "cookie-parser": "^1.4.3",
     "dhtmlx-gantt": "^4.1.0",
     "doxx": "^2.1.1",
     "express": "^4.15.2",
