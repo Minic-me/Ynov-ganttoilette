@@ -51,7 +51,7 @@ router.get('/register', (req, res) => {
 
 router.get('/login', (req, res) => {
 
-    console.log(req.query, "Login function called..");
+    console.log("Login function called..");
     userSchema.findOne({
         email: req.query.email,
         password: req.query.password
@@ -61,7 +61,8 @@ router.get('/login', (req, res) => {
             res.sendStatus(500).end();
         }
         else {
-            req.session.user = user;
+            console.log(`login as ${user._doc.email}`);
+            req.session.user = user._doc;
             res.sendStatus(204).end();
         }
     });
