@@ -1,5 +1,6 @@
 app.controller('projectListCtrl', ['$scope', '$http', '$mdSidenav', function($scope, $http, $mdSidenav) {
 
+    // menu burger
     $scope.toggleLeftMenu = function() {
         $mdSidenav('sidenav-left').toggle();
     }
@@ -9,7 +10,7 @@ app.controller('projectListCtrl', ['$scope', '$http', '$mdSidenav', function($sc
                 project: $scope.project
             })
             .then(function(data, status) {
-                $scope.project = {}; // vide la liste de contact
+                $scope.project = {}; // vide la liste de project
                 $scope.getProjects();
                 console.log('Project created');
             }, function(data, status) {

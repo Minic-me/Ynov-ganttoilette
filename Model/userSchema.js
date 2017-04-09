@@ -36,6 +36,7 @@ let UserSchema = new Schema({
         type: [String],
         trim: true
     },
+    // ses projets (propriétaire et rejoind)
     projectShared: {
         type: [String],
         trim: true

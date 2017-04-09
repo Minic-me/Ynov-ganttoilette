@@ -15,8 +15,8 @@ let projectSchema = new Schema({
         type: String,
         required: true
     },
-    date: {
-        type: String,
+    dateCreate: {
+        type: Date,
         required: true,
         trim: true
     },

@@ -46,7 +46,7 @@ app.use(session({
     cookie: {
         secure: false,
         path: '/',
-        maxAge: new Date(Date.now() + 15 * 60 * 1000) // 15 min
+        maxAge: 60 * 60 * 1 * 1000 // 15 min
     },
     resave: true,
     saveUninitialized: true,
@@ -55,7 +55,7 @@ app.use(session({
 
 app.use('/', (req, res, next) => {
     //console.log(res.headersSent);  <-- ne marche pas pour un sendFile
-    console.log(req.session);
+    //console.log(req.session._user);
     if (req.path === '/') {
         res.sendFile(path.join(__dirname, 'View', 'index.html'));
     }
@@ -64,6 +64,7 @@ app.use('/', (req, res, next) => {
     }
 });
 
+// page de login si non connecté
 app.use('/user', (req, res, next) => {
     user.isUserConnected(req, (connected) => {
         if (!connected) {
@@ -76,7 +77,8 @@ app.use('/user', (req, res, next) => {
 
         }
         else {
-            // aller sur la page des projets
+            res.send('<script>window.location.replace("/#!/Project")</script><h1>Already connected</h1><a href="/#!/Project">->Project</a>');
+            res.end();
         }
     });
 });
@@ -93,7 +95,7 @@ app.use('/project', (req, res, next) => {
             }
         }
         else {
-            res.send('<h1>Non connecté</h1>')
+            res.send('<script>window.location.replace("/#!/")</script><h1>No connected</h1><a href="/">->Login</a>');
             res.end();
         }
     })

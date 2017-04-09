@@ -1,10 +1,10 @@
 {
-  "name": "chat-example",
+  "name": "ganttoilette",
   "version": "0.0.0",
-  "description": "A chat example to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
+  "description": "Gestionnaire de projet",
   "main": "server.js",
   "repository": "",
-  "author": "Mostafa Eweda <mo.eweda@gmail.com>",
+  "author": "Vincent Dubois <vincent.dubois@ynov.com>",
   "dependencies": {
     "angular": "^1.6.4",
     "angular-animate": "^1.6.4",
