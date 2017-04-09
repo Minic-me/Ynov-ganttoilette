@@ -1,3 +1,14 @@
+/* GLOBAL STYLE */
+
+a,
+a:link,
+a:visited,
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
 /* SIGN UP*/
 
 body {
@@ -67,22 +78,55 @@ body {
 
 /*PROJECT LIST*/
 
+.content {
+    display: flex;
+    flex-direction: row;
+}
+
 .leftpanel {
-    padding: 20px;
-    transition: all linear 0.5s;
-    background-color: lightblue;
+    background: lightblue;
+    height: 100vh;
+    padding: 30px;
+    padding-top: 60px;
     width: 20vw;
+    -webkit-transition: all linear 0.5s;
+    transition: all linear 0.5s;
+}
+
+.leftpanel.ng-hide-add {
+    width: 400px
+}
+
+.leftpanel.ng-hide-remove {
+    width: 0px;
+}
+
+.rightPanel {
+    flex: 1;
 }
 
 .container-fluid {
     padding: 0 !important;
 }
 
-.boxme.ng-hide-add {
-    -webkit-animation: fadeOutLeftBig 0.4s;
-    display: block!important;
+.togglePanel {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    z-index: 99;
+    width: 50px;
+    text-align: center;
+    border-radius: 100%;
+    background-color: #f7970a;
+    color: white !important;
 }
 
-.boxme.ng-hide-remove {
-    -webkit-animation: fadeInLeftBig 0.4s;
+.togglePanel:hover {
+    color: #f7970a;
+    background-color: #00aced;
+}
+
+.togglePanel i {
+    font-size: 40px;
+    line-height: 50px;
 }
