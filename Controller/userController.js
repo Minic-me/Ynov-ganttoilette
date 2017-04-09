@@ -60,10 +60,14 @@ router.get('/login', (req, res) => {
             console.log(err);
             res.sendStatus(500).end();
         }
-        else {
+        else if (user) {
             console.log(`login as ${user._doc.email}`);
             req.session.user = user._doc;
             res.sendStatus(204).end();
+        }
+        else {
+            console.log('User not found');
+            res.sendStatus(500).end();
         }
     });
 });
