@@ -83,22 +83,10 @@ body {
     flex-direction: row;
 }
 
-.leftpanel {
+.md-sidenav-left {
     background: lightblue;
-    height: 100vh;
     padding: 30px;
     padding-top: 60px;
-    width: 20vw;
-    -webkit-transition: all linear 0.5s;
-    transition: all linear 0.5s;
-}
-
-.leftpanel.ng-hide-add {
-    width: 400px
-}
-
-.leftpanel.ng-hide-remove {
-    width: 0px;
 }
 
 .rightPanel {

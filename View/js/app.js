@@ -1,4 +1,4 @@
-var app = angular.module("ganttApp", ["ngRoute"]);
+var app = angular.module("ganttApp", ["ngRoute", "ngMaterial"]);
 
 app.config(function($routeProvider) {
   $routeProvider
@@ -8,6 +8,6 @@ app.config(function($routeProvider) {
 
     }).when("/Project", {
       templateUrl: "/project",
-      controller: "projectCtrl"
+      controller: "projectListCtrl"
     });
 });

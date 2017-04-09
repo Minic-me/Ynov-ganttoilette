@@ -1,10 +1,11 @@
-var projectApp = angular.module('projectApp', ['projectMod']);
+app.controller('projectListCtrl', ['$scope', '$http', '$mdSidenav', function($scope, $http, $mdSidenav) {
 
-var projectMod = angular.module('projectMod', []);
+    $scope.toggleLeftMenu = function() {
+        $mdSidenav('sidenav-left').toggle();
+    }
 
-projectApp.controller('projectListCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.createProject = function() {
-        $http.post('/ganttoilette/createProject', {
+        $http.post('/project/createProject', {
                 project: $scope.project
             })
             .then(function(data, status) {
@@ -17,7 +18,7 @@ projectApp.controller('projectListCtrl', ['$scope', '$http', function($scope, $h
     }
 
     $scope.getProjects = function() {
-        $http.get('/ganttoilette/getProjects')
+        $http.get('/project/getProjects')
             .then(function(res, status) {
                 console.log('getProjects');
                 $scope.liste = res.data;
@@ -28,7 +29,7 @@ projectApp.controller('projectListCtrl', ['$scope', '$http', function($scope, $h
 
     $scope.deleteProject = function(index) {
         //$scope.liste = $scope.liste.filter((contact, i)=>{return (i!=index)});
-        $http.delete(`/ganttoilette/delete/${index}`)
+        $http.delete(`/project/delete/${index}`)
             .then(function(res, status) {
                 console.log('Project deleted');
                 $scope.getContacts();
@@ -36,5 +37,6 @@ projectApp.controller('projectListCtrl', ['$scope', '$http', function($scope, $h
                 console.log(`Il y a eu une erreur: ${res}, avec le statut: ${status}`);
             });
     }
+    $scope.showCreateForm = false;
     $scope.getProjects();
 }]);
